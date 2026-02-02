@@ -4,7 +4,9 @@ package com.nivora.mart.controllers;
 
 import com.nivora.mart.DTOs.ProductDTO;
 import com.nivora.mart.services.IProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,9 +26,19 @@ public class ProductController {
     }
 
     @GetMapping()
-    public List<ProductDTO> getAllProducts() throws IOException {
+    public ResponseEntity<List<ProductDTO>> getAllProducts() throws IOException {
 
-        return this.productService.getAllProducts();
+        List<ProductDTO> response = this.productService.getAllProducts();
+
+        return ResponseEntity.ok(response);
+
+    }
+
+   @GetMapping("/{id}")
+    public  ResponseEntity<ProductDTO> getProductByID(@PathVariable  int id) throws IOException {
+        ProductDTO product = this.productService.getProductByID(id);
+        return ResponseEntity.ok(product);
+
 
     }
 

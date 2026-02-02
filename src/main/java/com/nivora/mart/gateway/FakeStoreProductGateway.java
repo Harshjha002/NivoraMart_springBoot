@@ -34,9 +34,41 @@ public class FakeStoreProductGateway implements IProductGateway {
         // Map the FakeStore API response to internal ProductDTO objects
         return response.stream()
                 .map(p -> ProductDTO.builder()
-                        .name(p.getTitle())
+                        .id(p.getId())
+                        .title(p.getTitle())
+                        .price(p.getPrice())
+                        .description(p.getDescription())
+                        .category(p.getCategory())
+                        .image(p.getImage())
+                        .ratingCount(p.getRating().getCount())
+                        .ratingRate(p.getRating().getRate())
                         .build())
                 .toList();
     }
+
+    @Override
+    public ProductDTO getProductByID(int id) throws IOException {
+
+        FakeStoreProductResponseDTO response =
+                fakeStoreProductApi.getProductByID(id)
+                        .execute()
+                        .body();
+
+        if (response == null) {
+            throw new IOException("Failed to fetch product with id: " + id);
+        }
+
+        return ProductDTO.builder()
+                .id(response.getId())
+                .title(response.getTitle())
+                .price(response.getPrice())
+                .description(response.getDescription())
+                .category(response.getCategory())
+                .image(response.getImage())
+                .ratingCount(response.getRating().getCount())
+                .ratingRate(response.getRating().getRate())
+                .build();
+    }
+
 
 }

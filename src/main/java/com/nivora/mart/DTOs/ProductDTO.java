@@ -4,10 +4,21 @@ import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductDTO {
 
-    private String name;
+    private int id;
+    private String title;
+    private Double price;
+    private String description;
+    private String category;
+    private String image;
+
+    // flattened rating
+    private Double ratingRate;
+    private Integer ratingCount;
+
 }
+
