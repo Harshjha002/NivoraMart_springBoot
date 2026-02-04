@@ -3,6 +3,7 @@ package com.nivora.mart.gateway;
 import com.nivora.mart.DTOs.FakeStoreProductResponseDTO;
 import com.nivora.mart.DTOs.ProductDTO;
 import com.nivora.mart.gateway.api.FakeStoreProductApi;
+import com.nivora.mart.mappers.GetAllProductsMapper;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -58,16 +59,7 @@ public class FakeStoreProductGateway implements IProductGateway {
             throw new IOException("Failed to fetch product with id: " + id);
         }
 
-        return ProductDTO.builder()
-                .id(response.getId())
-                .title(response.getTitle())
-                .price(response.getPrice())
-                .description(response.getDescription())
-                .category(response.getCategory())
-                .image(response.getImage())
-                .ratingCount(response.getRating().getCount())
-                .ratingRate(response.getRating().getRate())
-                .build();
+        return GetAllProductsMapper.toProductDTO(response);
     }
 
 
