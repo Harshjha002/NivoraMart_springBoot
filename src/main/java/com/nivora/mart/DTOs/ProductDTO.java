@@ -9,16 +9,17 @@ import lombok.*;
 @AllArgsConstructor
 public class ProductDTO {
 
-    private int id;
-    private String title;
-    private Double price;
-    private String description;
-    private String category;
     private String image;
-
-    // flattened rating
-    private Double ratingRate;
-    private Integer ratingCount;
+    private String color;
+    private int price;
+    private String description;
+    private int discount;
+    private String model;
+    private long id;
+    private String title;
+    private String category;
+    private String brand;
+    private boolean popular;
 
 }
 

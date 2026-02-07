@@ -37,21 +37,19 @@ public class FakeStoreProductGateway implements IProductGateway {
                 .map(p -> ProductDTO.builder()
                         .id(p.getId())
                         .title(p.getTitle())
-                        .price(p.getPrice())
+                        .price((int) p.getPrice())
                         .description(p.getDescription())
                         .category(p.getCategory())
                         .image(p.getImage())
-                        .ratingCount(p.getRating().getCount())
-                        .ratingRate(p.getRating().getRate())
                         .build())
                 .toList();
     }
 
     @Override
-    public ProductDTO getProductByID(int id) throws IOException {
+    public ProductDTO getProductByID(long id) throws IOException {
 
         FakeStoreProductResponseDTO response =
-                fakeStoreProductApi.getProductByID(id)
+                fakeStoreProductApi.getProductByID((int) id)
                         .execute()
                         .body();
 

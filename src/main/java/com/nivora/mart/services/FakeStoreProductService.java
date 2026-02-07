@@ -18,13 +18,19 @@ public class FakeStoreProductService implements IProductService {
 
     @Override
     public List<ProductDTO> getAllProducts() throws IOException {
-        return this.productGateway.getAllProducts();
+        return productGateway.getAllProducts();
     }
 
     @Override
-    public ProductDTO getProductByID(int id) throws IOException {
-        return this.productGateway.getProductByID(id);
+    public ProductDTO getProductByID(long id) throws IOException {
+        return productGateway.getProductByID(id);
     }
 
-
+    @Override
+    public ProductDTO createProduct(ProductDTO dto) {
+        // FakeStore is read-only for us
+        throw new UnsupportedOperationException(
+                "Create product is not supported for FakeStore"
+        );
+    }
 }

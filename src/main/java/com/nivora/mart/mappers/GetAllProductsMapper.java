@@ -24,12 +24,10 @@ public class GetAllProductsMapper {
         return ProductDTO.builder()
                 .id(dto.getId())
                 .title(dto.getTitle())
-                .price(dto.getPrice())
+                .price((int) dto.getPrice())
                 .description(dto.getDescription())
                 .category(dto.getCategory())
                 .image(dto.getImage())
-                .ratingCount(dto.getRating().getCount())
-                .ratingRate(dto.getRating().getRate())
                 .build();
     }
 }
